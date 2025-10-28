@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Clone your GitHub repo
-                git 'https://github.com/Drixinside/My-Website'
+                git branch: 'main', url: 'https://github.com/Drixinside/My-Website'
             }
         }
 
