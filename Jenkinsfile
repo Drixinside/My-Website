@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to RHEL VM') 
+        stage('Deploy to RHEL VM') {
             steps {
                 sshagent(['rhel-ssh']) {
 		    sh 'scp -o StrictHostKeyChecking=no ./app.sh ${REMOTE_USER}@${REMOTE_HOST}:/tmp/app.sh' 
@@ -32,5 +32,5 @@ pipeline {
             }
         }
     }
-
+}
 
