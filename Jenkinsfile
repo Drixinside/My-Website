@@ -3,7 +3,7 @@ pipeline {
 	
     environment {
         REMOTE_USER = 'admin'
-        REMOTE_HOST = 'server1'      // change to your RHEL VM IP
+        REMOTE_HOST = 'server1'      
         SSH_CRED_ID = 'rhel-ssh'      // Jenkins credentials ID
     }
 
@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy to RHEL VM') {
             steps {
                 sshagent(['rhel-ssh']) {
-		    sh 'scp -o StrictHostKeyChecking=no ./app.sh ${REMOTE_USER}@${REMOTE_HOST}:/tmp/app.sh' 
+		    sh 'scp -o StrictHostKeyChecking=no ./index.html ${REMOTE_USER}@${REMOTE_HOST}:/opt/website' 
                     sh 'ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} "bash /tmp/app.sh" "echo Deployed on $(hostname)"'
                 }
             }
