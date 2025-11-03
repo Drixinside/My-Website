@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy to RHEL VM') {
             steps {
                 sshagent(['rhel-ssh']) {
-		    sh 'scp -o StrictHostKeyChecking=no ./index.html ${REMOTE_USER}@${REMOTE_HOST}:/opt/website' 
+		    sh 'scp -o StrictHostKeyChecking=no .My-Website/ ${REMOTE_USER}@${REMOTE_HOST}:/opt/website' 
                     sh 'ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} "bash /tmp/app.sh" "echo Deployed on $(hostname)"'
                 }
             }
